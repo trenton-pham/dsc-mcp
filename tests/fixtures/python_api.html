@@ -1,0 +1,23 @@
+<html><title>re — Regular expression operations — Python 3.15.0 documentation</title><div class="body" role="main"><dt class="sig sig-object py" id="re.findall">
+<span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">findall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.findall" title="Link to this definition">¶</a></dt><dd><p>Return all non-overlapping matches of <em>pattern</em> in <em>string</em>, as a list of
+strings or tuples.  The <em>string</em> is scanned left-to-right, and matches
+are returned in the order found.  Empty matches are included in the result.</p>
+<p>The result depends on the number of capturing groups in the pattern.
+If there are no groups, return a list of strings matching the whole
+pattern.  If there is exactly one group, return a list of strings
+matching that group.  If multiple groups are present, return a list
+of tuples of strings matching the groups.  Non-capturing groups do not
+affect the form of the result.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\bf[a-z]*'</span><span class="p">,</span> <span class="s1">'which foot or hand fell fastest'</span><span class="p">)</span>
+<span class="go">['foot', 'fell', 'fastest']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(\w+)=(\d+)'</span><span class="p">,</span> <span class="s1">'set width=20 and height=10'</span><span class="p">)</span>
+<span class="go">[('width', '20'), ('height', '10')]</span>
+</pre></div>
+</div>
+<p>The expression’s behaviour can be modified by specifying a <em>flags</em> value.
+Values can be any of the <a class="reference internal" href="#flags">flags</a> variables, combined using bitwise OR
+(the <code class="docutils literal notranslate"><span class="pre">|</span></code> operator).</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.7: </span>Non-empty matches can now start just after a previous empty match.</p>
+</div>
+</dd></div></html>

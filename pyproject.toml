@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dsc-mcp"
+version = "0.1.0"
+description = "Curated official data science documentation over local MCP stdio"
+requires-python = ">=3.11"
+dependencies = ["mcp==2.3.0", "beautifulsoup4==4.15.0", "httpx==0.28.1"]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+
+[project.scripts]
+dsc-mcp = "dsc_mcp.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["dsc_mcp*"]

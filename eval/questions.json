@@ -1,0 +1,20 @@
+[
+  {"library":"pandas","query":"combine tables and keep unmatched rows","retry_query":"pandas merge outer join","expected_url":"/user_guide/merging.html","needle":"outer"},
+  {"library":"pandas","query":"pandas.DataFrame.merge","expected_url":"/reference/api/pandas.DataFrame.merge.html","needle":"merge"},
+  {"library":"numpy","query":"multiply arrays with different shapes","expected_url":"/user/basics.broadcasting.html","needle":"broadcast"},
+  {"library":"numpy","query":"numpy.reshape","expected_url":"/reference/generated/numpy.reshape.html","needle":"reshape"},
+  {"library":"matplotlib","query":"create several plots in one figure","expected_url":"/users/explain/quick_start.html","needle":"axes"},
+  {"library":"matplotlib","query":"matplotlib.pyplot.subplots","expected_url":"/api/_as_gen/matplotlib.pyplot.subplots.html","needle":"subplots"},
+  {"library":"plotly","query":"make interactive scatter plots from a data frame","expected_url":"/python/line-and-scatter/#Scatter-plots-with-Plotly-Express","needle":"px.scatter(df"},
+  {"library":"plotly","query":"plotly.express.scatter","expected_url":"/python-api-reference/generated/plotly.express.scatter.html","needle":"scatter"},
+  {"library":"scikit-learn","query":"avoid data leakage during cross validation","expected_url":"/stable/common_pitfalls.html","needle":"leakage"},
+  {"library":"scikit-learn","query":"sklearn.pipeline.Pipeline","expected_url":"/stable/modules/generated/sklearn.pipeline.Pipeline.html","needle":"pipeline"},
+  {"library":"scipy","query":"compare means of two independent samples","expected_url":"/reference/generated/scipy.stats.ttest_ind.html","needle":"independent"},
+  {"library":"scipy","query":"scipy.stats.ttest_ind","expected_url":"/reference/generated/scipy.stats.ttest_ind.html","needle":"ttest_ind"},
+  {"library":"requests","query":"avoid waiting forever for a server response","expected_url":"/user/quickstart/","needle":"timeout"},
+  {"library":"requests","query":"requests.Session","expected_url":"/api/","needle":"session"},
+  {"library":"beautifulsoup4","query":"find all links in an HTML page","expected_url":"/bs4/doc/","needle":"find_all"},
+  {"library":"beautifulsoup4","query":"BeautifulSoup find_all","expected_url":"/bs4/doc/","needle":"find_all"},
+  {"library":"python","query":"return list of regex matches in string","expected_url":"/library/re.html","needle":"findall"},
+  {"library":"python","query":"re.findall","expected_url":"/library/re.html","needle":"findall"}
+]
