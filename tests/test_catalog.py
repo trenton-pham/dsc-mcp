@@ -4,12 +4,14 @@ from hashlib import sha256
 import os
 from pathlib import Path
 import socket
+import sqlite3
 import sys
 
 import httpx
 import pytest
 
 from dsc_mcp import catalog, sources
+from dsc_mcp.__main__ import main
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -41,6 +43,15 @@ def test_content_type_rejected():
     with httpx.Client(transport=httpx.MockTransport(lambda r: httpx.Response(200, headers={"content-type": "application/pdf"}, content=b"not html"))) as client:
         with pytest.raises(ValueError, match="Expected HTML"):
             sources.download(source, client)
+
+
+@pytest.mark.parametrize("content_type", ["text/html ; charset=utf-8", " application/xhtml+xml \t; charset=utf-8"])
+def test_content_type_whitespace_preserves_html_bytes(content_type):
+    source = sources.LIBRARIES["numpy"].sources[0]
+    html = b"<main>\xc3\xa9</main>"
+    with httpx.Client(transport=httpx.MockTransport(lambda r: httpx.Response(
+            200, headers={"content-type": content_type}, content=html))) as client:
+        assert sources.download(source, client) == (source.url, html)
 
 
 def test_real_layout_excerpts_preserve_signatures_code_and_anchors():
@@ -189,6 +200,22 @@ def test_missing_index_lists_libraries(tmp_path):
     assert all(row["status"] == "missing" for row in catalog.list_libraries(tmp_path / "absent.db"))
     with pytest.raises(catalog.CatalogError, match="Run"):
         catalog.search_docs("merge", db=tmp_path / "absent.db")
+
+
+def test_missing_fts_reports_full_rebuild_in_catalog_and_cli(tmp_path, monkeypatch, capsys):
+    db = tmp_path / "docs.sqlite3"
+    with sqlite3.connect(db) as conn:
+        conn.executescript(catalog.SCHEMA)
+        conn.execute("INSERT INTO meta VALUES ('schema_version', ?)", (str(catalog.SCHEMA_VERSION),))
+        conn.execute("DROP TABLE sections_fts")
+    with pytest.raises(catalog.CatalogError, match="full sync.*rebuild"):
+        catalog.search_docs("merge", db=db)
+    monkeypatch.setattr(sys, "argv", ["dsc-mcp", "search", "merge", "--db", str(db)])
+    assert main() == 2
+    output = capsys.readouterr()
+    assert output.out == ""
+    assert "full sync" in output.err and f"sync --db {db}" in output.err
+    assert "Traceback" not in output.err
 
 
 def test_exact_api_lookup_prefers_signature_before_split_tail(tmp_path, monkeypatch):

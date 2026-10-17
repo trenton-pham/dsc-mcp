@@ -59,6 +59,8 @@ def _reader(db: Path):
     conn = _connect(db)
     try:
         yield conn
+    except sqlite3.DatabaseError as exc:
+        raise CatalogError(f"Invalid documentation index at {db}. Run a full sync to rebuild it: `python -m dsc_mcp sync --db {db}`. {exc}") from exc
     finally:
         conn.close()
 

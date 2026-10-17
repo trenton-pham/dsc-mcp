@@ -146,7 +146,7 @@ def download(source: Source, client: httpx.Client | None = None) -> tuple[str, b
                         if response.status_code in (429, 500, 502, 503, 504):
                             raise httpx.HTTPStatusError(f"HTTP {response.status_code} for {current}", request=response.request, response=response)
                         response.raise_for_status()
-                        content_type = response.headers.get("content-type", "").split(";", 1)[0].lower()
+                        content_type = response.headers.get("content-type", "").split(";", 1)[0].strip().lower()
                         if content_type and content_type not in ("text/html", "application/xhtml+xml"):
                             raise ValueError(f"Expected HTML documentation at {current}, got {content_type}")
                         chunks: list[bytes] = []
