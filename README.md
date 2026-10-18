@@ -86,3 +86,37 @@ Run the focused tests with `.venv/bin/python -m pytest -q`. After syncing, run `
 The verified snapshot has 67 pages and 1,692 sections. It supports 17 of the 18 evaluation questions directly. The pandas join question requires its documented keyword retry. A real Codex demonstration independently searched `merge outer`, read the official merge passages, cited pandas documentation version 3.0.6, and correctly reported that PyTorch is not covered. These checks do not prove that every generated answer is correct.
 
 The source registry applies **Model the Domain** by keeping library identity and coverage in one structure. **Boundary Discipline** puts source validation at the downloader. **Prove It Works** requires testing the actual offline tools and Codex connection, rather than relying on successful imports.
+
+## Stronger offline retrieval scorecard
+
+The challenge scorecard measures retrieval of reviewed documentation evidence. It is separate from the original 18-question evaluator and context benchmark, whose questions, rubric, and behavior remain unchanged. It does not call a model, download sources, change ranking, or evaluate generated answers.
+
+Run it against the snapshot named by the challenge manifest:
+
+```sh
+.venv/bin/python eval/retrieval_scorecard.py --db data/docs.sqlite3 --output eval/results/retrieval-baseline-2026-10-18.json
+```
+
+`--db` and `--output` are required. `--suite` selects another manifest; its default is `eval/challenge_questions.json` beside the evaluator. Choose a new output filename for each saved run. Existing reports are never overwritten. Exit status zero means the scorecard is valid, including any retrieval misses. Status two means invalid configuration, incompatible gold evidence, an execution error, a network attempt, or a changed snapshot. Keep using the original evaluator and automated tests as the regression gate.
+
+The context benchmark's `--output` must name a new directory. It claims that directory before starting the benchmark and rejects existing directories, files, and symlinks. Use a fresh path when rerunning commands from historical reports.
+
+The public challenge has 36 cases across all nine libraries. It retains the original 18 questions with stronger labels and adds nine paraphrases, three questions requiring separate passages, three context-disambiguation questions, and three unsupported-request diagnostics. It is an openly inspected challenge set, not an independently held-out estimate of general accuracy. Queries and labels are fixed before running it; retrieval is not tuned to improve this baseline.
+
+Each evidence case lists named requirements. Every requirement must be met, and each can accept alternative passages. A passage must contain a reviewed, multiword quotation after whitespace normalization and case-insensitive comparison. The quotation and its accepted URL must belong to the same section. A URL with a fragment matches that section URL exactly; a fragmentless URL matches the exact base page. Quotes are matched against the section heading and full text, not its search preview. These checks establish that labelled evidence was retrieved; they do not independently prove that the label supports a complete answer.
+
+Before searching, the evaluator checks every declared alternative against the whole read-only index and verifies the manifest's database SHA-256. It rejects SQLite WAL mode, where committed data may reside outside the fingerprinted main file. Use a standalone snapshot produced by manual sync; the evaluator never checkpoints or changes the index. Missing source evidence is an invalid suite, not a search miss. Multi-passage cases require at least two requirements that cannot all be satisfied by a single section. The cross-library case searches without a library filter.
+
+The evaluator reads the first five results in rank order. It reports complete evidence among the first one, three, and five results, along with per-requirement matches so partial support remains visible. If a case includes a scripted keyword retry, that retry always runs, even when the original query succeeds. Direct scores remain separate from cumulative evidence across the original five results and the retry's five results. Retry keywords are authored in the suite; this does not measure an agent discovering a better query.
+
+Unsupported requests are diagnostics, excluded from positive-evidence denominators. An unknown library must trigger the existing catalog rejection. An uncovered topic returns candidate passages for inspection. A requested documentation version absent from the metadata records that mismatch. None measures answer refusal, and missing version coverage does not establish that an API is unavailable.
+
+JSON reports preserve the fixed execution policy, fingerprints, downloaded documentation versions and dates, ranked candidates, matched requirements, and workload counts. Reads are cached by section ID across the suite. Search attempts, actual unique section reads, and characters in newly read headings and bodies exclude corpus preflight work. These counts are not per-question model costs, MCP wire payloads, tokens, latency, or billing. Retrieval runs with network attempts blocked, and the database fingerprint must remain unchanged.
+
+The guard monitors Python socket audit events; it is not an operating-system network sandbox. Reports are fully written in a private temporary directory before atomic publication without replacing an existing destination.
+
+The [initial baseline](eval/results/retrieval-baseline-2026-10-18.json) finds complete labelled evidence for 16 of 33 positive cases in the first result, 20 in the first three, and 23 in the first five. The one scripted retry brings cumulative coverage to 24 of 33. The three diagnostics remain separate. The run records 37 search attempts and 131 unique section reads, with network blocking enforced and database bytes unchanged. These are baseline evidence measurements, not generated-answer accuracy.
+
+The [safety-verified replay](eval/results/retrieval-baseline-2026-10-18-safety-fixes.json) preserves every evidence result and workload count. Its evaluator fingerprint identifies the added WAL rejection. The initial baseline and other saved reports remain unchanged.
+
+After a manual sync, do not update the manifest fingerprint alone. Review every quotation and accepted URL through `dsc_docs`, recheck the unsupported-topic rationale and requested-version metadata, and verify that the multi-passage questions still need separate sections. Update the reviewed labels and snapshot fingerprint together, increment the suite ID, and save a new baseline. Reports from different snapshots or suite revisions are different measurements.

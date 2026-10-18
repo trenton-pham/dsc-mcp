@@ -1,0 +1,37 @@
+policy,library,query,baseline_chars,mcp_envelope_chars,mcp_text_chars,reduction_pct,text_reduction_pct,evidence_pass,direct,retry,tool_calls,sections_read,baseline_estimated_tokens,mcp_envelope_estimated_tokens,mcp_text_estimated_tokens
+read_top5,pandas,combine tables and keep unmatched rows,39362,72797,52505,-84.9423301661501,-33.39007164270109,True,False,True,13,10,9840.5,18199.25,13126.25
+read_top5,pandas,pandas.DataFrame.merge,8051,35827,25198,-345.00062104086453,-212.97975406781768,True,True,False,7,5,2012.75,8956.75,6299.5
+read_top5,numpy,multiply arrays with different shapes,10241,38091,27218,-271.94609901376816,-165.7748266770823,True,True,False,7,5,2560.25,9522.75,6804.5
+read_top5,numpy,numpy.reshape,3402,30694,20406,-802.2339800117578,-499.8236331569665,True,True,False,7,5,850.5,7673.5,5101.5
+read_top5,matplotlib,create several plots in one figure,19954,35507,24495,-77.94427182519796,-22.75734188633858,True,True,False,7,5,4988.5,8876.75,6123.75
+read_top5,matplotlib,matplotlib.pyplot.subplots,15172,43024,31850,-183.57500659108882,-109.92617980490378,True,True,False,7,5,3793.0,10756.0,7962.5
+read_top5,plotly,make interactive scatter plots from a data frame,21305,27921,17614,-31.05374325275756,17.324571696784798,True,True,False,7,5,5326.25,6980.25,4403.5
+read_top5,plotly,plotly.express.scatter,16394,46995,34359,-186.65975356837868,-109.58277418567768,True,True,False,7,5,4098.5,11748.75,8589.75
+read_top5,scikit-learn,avoid data leakage during cross validation,23191,37175,26064,-60.29925402095642,-12.388426544780295,True,True,False,7,5,5797.75,9293.75,6516.0
+read_top5,scikit-learn,sklearn.pipeline.Pipeline,22593,34367,23451,-52.11348647811269,-3.797636436064278,True,True,False,7,5,5648.25,8591.75,5862.75
+read_top5,scipy,compare means of two independent samples,11840,42138,31734,-255.8952702702703,-168.02364864864865,True,True,False,7,5,2960.0,10534.5,7933.5
+read_top5,scipy,scipy.stats.ttest_ind,11840,35947,26726,-203.60641891891893,-125.72635135135135,True,True,False,7,5,2960.0,8986.75,6681.5
+read_top5,requests,avoid waiting forever for a server response,18152,25447,16442,-40.188408990744826,9.42044953724107,True,True,False,7,5,4538.0,6361.75,4110.5
+read_top5,requests,requests.Session,65861,29864,20017,54.656017977255125,69.60720304884529,True,True,False,7,5,16465.25,7466.0,5004.25
+read_top5,beautifulsoup4,find all links in an HTML page,125288,28916,18549,76.9203754549518,85.19491092522827,True,True,False,7,5,31322.0,7229.0,4637.25
+read_top5,beautifulsoup4,BeautifulSoup find_all,125288,33004,21949,73.65749313581509,82.48116339952749,True,True,False,7,5,31322.0,8251.0,5487.25
+read_top5,python,return list of regex matches in string,71113,25968,16485,63.48346997032892,76.81858450634905,True,True,False,7,5,17778.25,6492.0,4121.25
+read_top5,python,re.findall,71113,20240,12368,71.5382560150746,82.60796197601002,True,True,False,7,5,17778.25,5060.0,3092.0
+read_top1,pandas,combine tables and keep unmatched rows,39362,38453,21439,2.3093338753112147,45.533763528276005,True,False,True,5,2,9840.5,9613.25,5359.75
+read_top1,pandas,pandas.DataFrame.merge,8051,27694,18193,-243.9821140231027,-125.97192895292508,True,True,False,3,1,2012.75,6923.5,4548.25
+read_top1,numpy,multiply arrays with different shapes,10241,22269,12585,-117.44946782540767,-22.88838980568304,True,True,False,3,1,2560.25,5567.25,3146.25
+read_top1,numpy,numpy.reshape,3402,23011,13659,-576.3962375073486,-301.4991181657848,True,True,False,3,1,850.5,5752.75,3414.75
+read_top1,matplotlib,create several plots in one figure,19954,21955,12064,-10.028064548461458,39.540944171594674,True,True,False,3,1,4988.5,5488.75,3016.0
+read_top1,matplotlib,matplotlib.pyplot.subplots,15172,25098,15596,-65.42314790403374,-2.7946216715001304,True,True,False,3,1,3793.0,6274.5,3899.0
+read_top1,plotly,make interactive scatter plots from a data frame,21305,20816,11431,2.295235860126732,46.34592818587186,False,False,False,3,1,5326.25,5204.0,2857.75
+read_top1,plotly,plotly.express.scatter,16394,37785,26107,-130.48066365743566,-59.24728559228987,True,True,False,3,1,4098.5,9446.25,6526.75
+read_top1,scikit-learn,avoid data leakage during cross validation,23191,22250,12249,4.057608555042902,47.182096502953726,True,True,False,3,1,5797.75,5562.5,3062.25
+read_top1,scikit-learn,sklearn.pipeline.Pipeline,22593,25642,15689,-13.495330412074535,30.558137476209446,True,True,False,3,1,5648.25,6410.5,3922.25
+read_top1,scipy,compare means of two independent samples,11840,22657,13429,-91.3597972972973,-13.420608108108102,False,False,False,3,1,2960.0,5664.25,3357.25
+read_top1,scipy,scipy.stats.ttest_ind,11840,29314,20960,-147.58445945945942,-77.02702702702702,True,True,False,3,1,2960.0,7328.5,5240.0
+read_top1,requests,avoid waiting forever for a server response,18152,18384,10284,-1.2780960775672146,43.34508594094315,True,True,False,3,1,4538.0,4596.0,2571.0
+read_top1,requests,requests.Session,65861,19209,10438,70.83402924340658,84.1514705212493,True,True,False,3,1,16465.25,4802.25,2609.5
+read_top1,beautifulsoup4,find all links in an HTML page,125288,22715,13346,81.86977204520784,89.34774280058745,True,True,False,3,1,31322.0,5678.75,3336.5
+read_top1,beautifulsoup4,BeautifulSoup find_all,125288,20565,11058,83.5858182746951,91.17393525317668,True,True,False,3,1,31322.0,5141.25,2764.5
+read_top1,python,return list of regex matches in string,71113,19483,10940,72.60275898921435,84.61603363660653,True,True,False,3,1,17778.25,4870.75,2735.0
+read_top1,python,re.findall,71113,16434,9423,76.89030135137035,86.74925822282846,True,True,False,3,1,17778.25,4108.5,2355.75

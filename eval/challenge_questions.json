@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "suite_id": "retrieval-challenge-v1",
+  "database_sha256": "8163bb6a80af48f3de8358bbbc0881e4b2aa51561ab547f05031fa9d58a3b39d",
+  "cases": [
+    {
+      "id": "legacy-pandas-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "pandas",
+      "query": "combine tables and keep unmatched rows",
+      "requirements": [
+        {
+          "name": "Retain the union of both tables' keys",
+          "alternatives": [
+            {
+              "url": "https://pandas.pydata.org/docs/user_guide/merging.html#merge-types",
+              "quote": "outer | FULL OUTER JOIN | Use union of keys from both frames"
+            },
+            {
+              "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge",
+              "quote": "outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically."
+            }
+          ]
+        }
+      ],
+      "retry_query": "pandas merge outer join"
+    },
+    {
+      "id": "legacy-pandas-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "pandas",
+      "query": "pandas.DataFrame.merge",
+      "requirements": [
+        {
+          "name": "Identify database-style table joining",
+          "alternatives": [
+            {
+              "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge",
+              "quote": "Merge DataFrame or named Series objects with a database-style join."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-numpy-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "numpy",
+      "query": "multiply arrays with different shapes",
+      "requirements": [
+        {
+          "name": "Explain arithmetic with arrays of different shapes",
+          "alternatives": [
+            {
+              "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html",
+              "quote": "The term broadcasting describes how NumPy treats arrays with different shapes during arithmetic operations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-numpy-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "numpy",
+      "query": "numpy.reshape",
+      "requirements": [
+        {
+          "name": "Reshape without changing array data",
+          "alternatives": [
+            {
+              "url": "https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy.reshape",
+              "quote": "Returns a reshaped ndarray without changing data."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-matplotlib-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "matplotlib",
+      "query": "create several plots in one figure",
+      "requirements": [
+        {
+          "name": "Create multiple axes within a figure",
+          "alternatives": [
+            {
+              "url": "https://matplotlib.org/stable/users/explain/quick_start.html#working-with-multiple-figures-and-axes",
+              "quote": "Multiple Axes can be added a number of ways, but the most basic is plt.subplots() as used above."
+            },
+            {
+              "url": "https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots",
+              "quote": "Create a figure and a set of subplots."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-matplotlib-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "matplotlib",
+      "query": "matplotlib.pyplot.subplots",
+      "requirements": [
+        {
+          "name": "Create a figure and subplots",
+          "alternatives": [
+            {
+              "url": "https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots",
+              "quote": "Create a figure and a set of subplots."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-plotly-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "plotly",
+      "query": "make interactive scatter plots from a data frame",
+      "requirements": [
+        {
+          "name": "Show a scatter example using named DataFrame columns",
+          "alternatives": [
+            {
+              "url": "https://plotly.com/python/line-and-scatter/#Scatter-plots-with-Plotly-Express",
+              "quote": "fig = px.scatter(df, x=\"sepal_width\", y=\"sepal_length\")"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-plotly-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "plotly",
+      "query": "plotly.express.scatter",
+      "requirements": [
+        {
+          "name": "Describe one symbol mark per data row",
+          "alternatives": [
+            {
+              "url": "https://plotly.com/python-api-reference/generated/plotly.express.scatter.html#plotly.express.scatter",
+              "quote": "In a scatter plot, each row of data_frame is represented by a symbol mark in 2D space."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-scikit-learn-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "scikit-learn",
+      "query": "avoid data leakage during cross validation",
+      "requirements": [
+        {
+          "name": "Prevent leakage during preprocessing and cross-validation",
+          "alternatives": [
+            {
+              "url": "https://scikit-learn.org/stable/common_pitfalls.html#how-to-avoid-data-leakage",
+              "quote": "The scikit-learn pipeline is a great way to prevent data leakage as it ensures that the appropriate method is performed on the correct data subset. The pipeline is ideal for use in cross-validation and hyper-parameter tuning functions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-scikit-learn-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "scikit-learn",
+      "query": "sklearn.pipeline.Pipeline",
+      "requirements": [
+        {
+          "name": "Describe the pipeline's transformers and optional predictor",
+          "alternatives": [
+            {
+              "url": "https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline",
+              "quote": "A sequence of data transformers with an optional final predictor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-scipy-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "scipy",
+      "query": "compare means of two independent samples",
+      "requirements": [
+        {
+          "name": "Identify a test for two independent sample means",
+          "alternatives": [
+            {
+              "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind",
+              "quote": "Calculate the T-test for the means of two independent samples of scores."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-scipy-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "scipy",
+      "query": "scipy.stats.ttest_ind",
+      "requirements": [
+        {
+          "name": "Describe the independent-samples mean test",
+          "alternatives": [
+            {
+              "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind",
+              "quote": "Calculate the T-test for the means of two independent samples of scores."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-requests-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "requests",
+      "query": "avoid waiting forever for a server response",
+      "requirements": [
+        {
+          "name": "Bound waiting for a response with timeout",
+          "alternatives": [
+            {
+              "url": "https://requests.readthedocs.io/en/latest/user/quickstart/#timeouts",
+              "quote": "You can tell Requests to stop waiting for a response after a given number of seconds with the timeout parameter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-requests-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "requests",
+      "query": "requests.Session",
+      "requirements": [
+        {
+          "name": "Describe session cookie persistence and pooling",
+          "alternatives": [
+            {
+              "url": "https://requests.readthedocs.io/en/latest/api/#requests.Session",
+              "quote": "Provides cookie persistence, connection-pooling, and configuration."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-beautifulsoup4-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "beautifulsoup4",
+      "query": "find all links in an HTML page",
+      "requirements": [
+        {
+          "name": "Return every matching descendant",
+          "alternatives": [
+            {
+              "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all",
+              "quote": "The find_all() method looks through a tag's descendants and retrieves all descendants that match your filters."
+            }
+          ]
+        },
+        {
+          "name": "Demonstrate selection of anchor tags",
+          "alternatives": [
+            {
+              "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all",
+              "quote": "soup.find_all(\"a\") # [<a class=\"sister\" href=\"http://example.com/elsie\" id=\"link1\">Elsie</a>,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-beautifulsoup4-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "beautifulsoup4",
+      "query": "BeautifulSoup find_all",
+      "requirements": [
+        {
+          "name": "Describe matching descendants",
+          "alternatives": [
+            {
+              "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all",
+              "quote": "The find_all() method looks through a tag's descendants and retrieves all descendants that match your filters."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-python-natural",
+      "kind": "evidence",
+      "category": "legacy_natural",
+      "library": "python",
+      "query": "return list of regex matches in string",
+      "requirements": [
+        {
+          "name": "Return all non-overlapping regular-expression matches",
+          "alternatives": [
+            {
+              "url": "https://docs.python.org/3/library/re.html#re.findall",
+              "quote": "Return all non-overlapping matches of pattern in string , as a list of strings or tuples."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy-python-api",
+      "kind": "evidence",
+      "category": "legacy_api",
+      "library": "python",
+      "query": "re.findall",
+      "requirements": [
+        {
+          "name": "Describe the returned regex matches",
+          "alternatives": [
+            {
+              "url": "https://docs.python.org/3/library/re.html#re.findall",
+              "quote": "Return all non-overlapping matches of pattern in string , as a list of strings or tuples."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-pandas",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "pandas",
+      "query": "I have two spreadsheets with a shared identifier; keep every identifier from either when combining them.",
+      "requirements": [
+        {
+          "name": "Retain the union of both tables' keys",
+          "alternatives": [
+            {
+              "url": "https://pandas.pydata.org/docs/user_guide/merging.html#merge-types",
+              "quote": "outer | FULL OUTER JOIN | Use union of keys from both frames"
+            },
+            {
+              "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge",
+              "quote": "outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-numpy",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "numpy",
+      "query": "Apply one scale factor per colour channel to an entire RGB image using a small vector.",
+      "requirements": [
+        {
+          "name": "Scale the channels with compatible trailing dimensions",
+          "alternatives": [
+            {
+              "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html#general-broadcasting-rules",
+              "quote": "if you have a 256x256x3 array of RGB values, and you want to scale each color in the image by a different value, you can multiply the image by a one-dimensional array with 3 values."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-matplotlib",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "matplotlib",
+      "query": "Put four separate charts into a two by two grid inside a single figure.",
+      "requirements": [
+        {
+          "name": "Create a figure and subplots",
+          "alternatives": [
+            {
+              "url": "https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots",
+              "quote": "Create a figure and a set of subplots."
+            }
+          ]
+        },
+        {
+          "name": "Specify the subplot grid dimensions",
+          "alternatives": [
+            {
+              "url": "https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots",
+              "quote": "Number of rows/columns of the subplot grid."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-plotly",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "plotly",
+      "query": "Draw points from two named table columns in a Plotly Express figure.",
+      "requirements": [
+        {
+          "name": "Show a scatter example using named DataFrame columns",
+          "alternatives": [
+            {
+              "url": "https://plotly.com/python/line-and-scatter/#Scatter-plots-with-Plotly-Express",
+              "quote": "fig = px.scatter(df, x=\"sepal_width\", y=\"sepal_length\")"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-scikit-learn",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "scikit-learn",
+      "query": "Make sure preprocessing is learned separately inside each training fold instead of seeing held-out data.",
+      "requirements": [
+        {
+          "name": "Prevent leakage during preprocessing and cross-validation",
+          "alternatives": [
+            {
+              "url": "https://scikit-learn.org/stable/common_pitfalls.html#how-to-avoid-data-leakage",
+              "quote": "The scikit-learn pipeline is a great way to prevent data leakage as it ensures that the appropriate method is performed on the correct data subset. The pipeline is ideal for use in cross-validation and hyper-parameter tuning functions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-scipy",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "scipy",
+      "query": "Check whether two unrelated groups have different average values, allowing unequal variances.",
+      "requirements": [
+        {
+          "name": "Describe the independent-samples mean test",
+          "alternatives": [
+            {
+              "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind",
+              "quote": "Calculate the T-test for the means of two independent samples of scores."
+            }
+          ]
+        },
+        {
+          "name": "Document the unequal-variance option",
+          "alternatives": [
+            {
+              "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind",
+              "quote": "If False, perform Welch’s t-test, which does not assume equal population variance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-requests",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "requests",
+      "query": "Prevent my HTTP client from getting stuck forever when a remote server goes silent.",
+      "requirements": [
+        {
+          "name": "Bound waiting for a response with timeout",
+          "alternatives": [
+            {
+              "url": "https://requests.readthedocs.io/en/latest/user/quickstart/#timeouts",
+              "quote": "You can tell Requests to stop waiting for a response after a given number of seconds with the timeout parameter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-beautifulsoup4",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "beautifulsoup4",
+      "query": "Collect every matching descendant tag rather than stopping at the first match.",
+      "requirements": [
+        {
+          "name": "Describe matching descendants",
+          "alternatives": [
+            {
+              "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all",
+              "quote": "The find_all() method looks through a tag's descendants and retrieves all descendants that match your filters."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-python",
+      "kind": "evidence",
+      "category": "paraphrase",
+      "library": "python",
+      "query": "Give me all matching pieces of a string instead of just the first regular-expression match.",
+      "requirements": [
+        {
+          "name": "Return all non-overlapping regular-expression matches",
+          "alternatives": [
+            {
+              "url": "https://docs.python.org/3/library/re.html#re.findall",
+              "quote": "Return all non-overlapping matches of pattern in string , as a list of strings or tuples."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "multi-pandas-outer-uniqueness",
+      "kind": "evidence",
+      "category": "multi_passage",
+      "library": "pandas",
+      "query": "How do I outer-merge tables and detect unexpected duplicate keys before the merge?",
+      "requirements": [
+        {
+          "name": "Retain the union of both tables' keys",
+          "alternatives": [
+            {
+              "url": "https://pandas.pydata.org/docs/user_guide/merging.html#merge-types",
+              "quote": "outer | FULL OUTER JOIN | Use union of keys from both frames"
+            },
+            {
+              "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge",
+              "quote": "outer: use union of keys from both frames, similar to a SQL full outer join; sort keys lexicographically."
+            }
+          ]
+        },
+        {
+          "name": "Check key uniqueness before merging",
+          "alternatives": [
+            {
+              "url": "https://pandas.pydata.org/docs/user_guide/merging.html#merge-key-uniqueness",
+              "quote": "Key uniqueness is checked before merge operations and can protect against memory overflows and unexpected key duplication."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "multi-requests-session-timeout",
+      "kind": "evidence",
+      "category": "multi_passage",
+      "library": "requests",
+      "query": "How can I persist cookies across HTTP calls and avoid waiting indefinitely for a response?",
+      "requirements": [
+        {
+          "name": "Describe session cookie persistence and pooling",
+          "alternatives": [
+            {
+              "url": "https://requests.readthedocs.io/en/latest/api/#requests.Session",
+              "quote": "Provides cookie persistence, connection-pooling, and configuration."
+            }
+          ]
+        },
+        {
+          "name": "Bound waiting for a response with timeout",
+          "alternatives": [
+            {
+              "url": "https://requests.readthedocs.io/en/latest/user/quickstart/#timeouts",
+              "quote": "You can tell Requests to stop waiting for a response after a given number of seconds with the timeout parameter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "multi-numpy-scipy",
+      "kind": "evidence",
+      "category": "multi_passage",
+      "library": null,
+      "query": "How can I reshape an array without changing its values, then test whether two independent samples have the same mean?",
+      "requirements": [
+        {
+          "name": "Reshape without changing array data",
+          "alternatives": [
+            {
+              "url": "https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy.reshape",
+              "quote": "Returns a reshaped ndarray without changing data."
+            }
+          ]
+        },
+        {
+          "name": "Describe the independent-samples mean test",
+          "alternatives": [
+            {
+              "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind",
+              "quote": "Calculate the T-test for the means of two independent samples of scores."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disambiguation-numpy-order",
+      "kind": "evidence",
+      "category": "disambiguation",
+      "library": "numpy",
+      "query": "NumPy reshape order='F': does F refer to memory layout or indexing order?",
+      "requirements": [
+        {
+          "name": "Distinguish indexing order from memory layout",
+          "alternatives": [
+            {
+              "url": "https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy.reshape",
+              "quote": "Note that the ‘C’ and ‘F’ options take no account of the memory layout of the underlying array, and only refer to the order of indexing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disambiguation-python-groups",
+      "kind": "evidence",
+      "category": "disambiguation",
+      "library": "python",
+      "query": "With Python re.findall, do capturing groups return whole matches or captured groups?",
+      "requirements": [
+        {
+          "name": "Describe one capturing group's result",
+          "alternatives": [
+            {
+              "url": "https://docs.python.org/3/library/re.html#re.findall",
+              "quote": "If there is exactly one group, return a list of strings matching that group."
+            }
+          ]
+        },
+        {
+          "name": "Describe multiple capturing groups' result",
+          "alternatives": [
+            {
+              "url": "https://docs.python.org/3/library/re.html#re.findall",
+              "quote": "If multiple groups are present, return a list of tuples of strings matching the groups."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disambiguation-requests-timeout",
+      "kind": "evidence",
+      "category": "disambiguation",
+      "library": "requests",
+      "query": "Requests timeout: is it a deadline for the entire download or a wait for received bytes?",
+      "requirements": [
+        {
+          "name": "Distinguish a socket wait from an entire-download deadline",
+          "alternatives": [
+            {
+              "url": "https://requests.readthedocs.io/en/latest/user/quickstart/#timeouts",
+              "quote": "timeout is not a time limit on the entire response download; rather, an exception is raised if the server has not issued a response for timeout seconds (more precisely, if no bytes have been received on the underlying socket for timeout seconds)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-unknown-library",
+      "kind": "diagnostic",
+      "diagnostic": "unknown_library",
+      "library": "pytorch",
+      "query": "Create a tensor from a Python list",
+      "rationale": "PyTorch is absent from the approved library registry. Record the existing unknown-library rejection; do not score answer refusal."
+    },
+    {
+      "id": "diagnostic-uncovered-topic",
+      "kind": "diagnostic",
+      "diagnostic": "unsupported_topic",
+      "library": "python",
+      "query": "Use ast.NodeTransformer to rewrite an abstract syntax tree",
+      "rationale": "The curated Python registry has no ast module documentation. Inspect incidental matches for this missing topic; no automatic answerability claim is made."
+    },
+    {
+      "id": "diagnostic-unavailable-version",
+      "kind": "diagnostic",
+      "diagnostic": "unavailable_version",
+      "library": "pandas",
+      "query": "pandas.DataFrame.merge in pandas 2.2 documentation",
+      "requested_version": "2.2",
+      "rationale": "The snapshot metadata indexes pandas documentation 3.0.6, not the requested 2.2. This checks documentation coverage, not whether an API is available."
+    }
+  ]
+}
